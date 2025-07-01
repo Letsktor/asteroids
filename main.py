@@ -1,19 +1,22 @@
 
 import pygame
-import constants
+from constants import *
+from palyer import Player
 def main():
     pygame.init()
-    screen=pygame.display.set_mode((constants.SCREEN_WIDTH,constants.SCREEN_WIDTH))
+    screen=pygame.display.set_mode((SCREEN_WIDTH,SCREEN_WIDTH))
+    clock=pygame.time.Clock()
+    dt=0
+    player=Player(x=SCREEN_WIDTH/2,y=SCREEN_HEIGHT/2)
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 return
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
-    #print("Starting Asteroids!")
-    #print(f"Screen width: {constants.SCREEN_WIDTH}")
-    #print(f"Screen height: {constants.SCREEN_HEIGHT}")
-
+        dt=clock.tick(60)/1000
+    
 
 if __name__ == "__main__":
     main()
